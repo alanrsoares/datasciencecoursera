@@ -1,4 +1,4 @@
-read_data <- function(id, directory, summarize = FALSE) {
+read_data <- function(id, directory) {
   file <- sprintf("%s/%03d.csv", directory, as.numeric(id))
   read.csv(file)
 }
