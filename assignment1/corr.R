@@ -10,5 +10,5 @@ corr <- function(directory, threshold = 0) {
     cor(data$sulfate, data$nitrate)
   }
 
-  unlist(lapply(ids, correspond))
+  sapply(ids, correspond)
 }
