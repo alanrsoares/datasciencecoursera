@@ -1,3 +1,5 @@
+MEASURES <- read.csv('data/outcome-of-care-measures.csv', colClasses = 'character')
+STATES   <- sort(unique(MEASURES[, 7]))
 
 get_outcome_column <- function(outcome){
   switch( outcome  
@@ -8,18 +10,11 @@ get_outcome_column <- function(outcome){
         )
 }
 
-read_measures <- function() read.csv('data/outcome-of-care-measures.csv', colClasses = 'character')
-  
-get_states <- function(){
-  data <- read_measures()
-  sort(unique(data[, 7]))
-}
-
 rankhospital <- function(state, outcome, num = 'best') {
-  data <- read_measures()
+  data <- MEASURES
   
   # validate state
-  if(!is.element(state, get_states()))
+  if(!is.element(state, STATES))
     stop('invalid state')
 
   column <- get_outcome_column(outcome)
