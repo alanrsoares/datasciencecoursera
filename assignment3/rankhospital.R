@@ -2,10 +2,11 @@ MEASURES <- read.csv('data/outcome-of-care-measures.csv', colClasses = 'characte
 STATES   <- sort(unique(MEASURES[, 7]))
 
 get_outcome_column <- function(outcome){
+  PREFIX <- 'Hospital.30.Day.Death..Mortality..Rates.from.'
   switch( outcome  
-        , 'heart attack'  = 'Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack'
-        , 'heart failure' = 'Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure'
-        , 'pneumonia'     = 'Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia'
+        , 'heart attack'  = paste0(PREFIX, 'Heart.Attack')
+        , 'heart failure' = paste0(PREFIX, 'Heart.Failure')
+        , 'pneumonia'     = paste0(PREFIX, 'Pneumonia')
         , stop('invalid outcome')
         )
 }
